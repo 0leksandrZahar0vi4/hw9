@@ -54,15 +54,17 @@ def phone_number(*args):
 def show_all(*args):
     for func, kw in COMMANDS.items():
         if "show all":
-            return f"{records}"
+            for key, val in records.items():
+                # print(key, val)
+                return f"{records}"
 
 
-@user_error
-def goodbay(*args):
-    for func, kw in COMMANDS.items():
-        if ("exit", "good bay", "close"):
-            break
-    return f"Good bay!"
+# @user_error
+# def goodbay(*args):
+#     for func, kw in COMMANDS.items():
+#         if ("exit", "good bay", "close"):
+#             break
+#         return f"Good bay!"
 
 
 def unknown(*args):
@@ -75,7 +77,6 @@ COMMANDS = {
     change_record: "change record",
     phone_number: "phone",
     show_all: "show all",
-    goodbay: ("exit", "good bay", "close"),
 }
 
 
@@ -92,6 +93,9 @@ def main():
 
         func, data = parser(user_input.lower())
         print(func(*data))
+        if user_input == "exit" or user_input == "good bay" or user_input == "close":
+            break
+    print(f"Good bay!")
 
 
 if __name__ == "__main__":
